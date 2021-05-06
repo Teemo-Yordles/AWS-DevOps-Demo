@@ -1,0 +1,21 @@
+server-ip: 172.28.249.179
+spring:
+  redis:
+    host: ${server-ip}
+    port: 7963
+    password: Best9Luck!
+    subscribe:
+      topic: FLOP
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${server-ip}:8848
+server:
+  tomcat:
+    remoteip:
+      remote-ip-header:
+logging:
+  file:
+    name: /var/log/view/view-websocket.log
+  pattern:
+    rolling-file-name: /var/log/view/view-websocket.%d{yyyy-MM-dd}-%i.gz

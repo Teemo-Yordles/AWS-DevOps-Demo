@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unisys.aos.view.admin.mapper.SmmProfileColumnSettingMapper">
+
+    <resultMap id="ColumnSettingMap" type="SmmProfileColumnSetting">
+        <id column="setting_id" property="id"/>
+        <result column="setting_profile_id" property="profileId"/>
+        <result column="setting_column_id" property="columnId"/>
+        <result column="setting_authorized" property="authorized"/>
+        <result column="setting_visible" property="visible"/>
+        <result column="setting_order" property="order"/>
+        <result column="setting_highlight" property="highlight"/>
+        <result column="setting_highlight_color" property="highlightColor"/>
+        <result column="setting_highlight_duration" property="highlightDuration"/>
+        <result column="setting_notification" property="notification"/>
+        <result column="setting_create_time" property="createTime"/>
+        <result column="setting_update_time" property="updateTime"/>
+        <result column="setting_version" property="version"/>
+        <association property="flightColumn" javaType="SmmFlightColumn">
+            <id column="column_id" property="id"/>
+            <result column="column_code" property="code"/>
+            <result column="column_description" property="description"/>
+            <result column="column_local_description" property="localDescription"/>
+            <result column="column_create_time" property="createTime"/>
+            <result column="column_update_time" property="updateTime"/>
+            <result column="column_version" property="version"/>
+        </association>
+    </resultMap>
+    
+    <delete id="deleteByProfileId">
+        delete
+        from smm_profile_column_setting
+        where profile_id = #{id}
+    </delete>
+
+    <select id="findColumnSettingByProfileId" resultMap="ColumnSettingMap" parameterType="long">
+        select spcs.`id`                 setting_id,
+               spcs.`profile_id`         setting_profile_id,
+               spcs.`column_id`          setting_column_id,
+               spcs.`authorized`         setting_authorized,
+               spcs.`visible`            setting_visible,
+               spcs.`order`              setting_order,
+               spcs.`highlight`          setting_highlight,
+               spcs.`highlight_color`    setting_highlight_color,
+               spcs.`highlight_duration` setting_highlight_duration,
+               spcs.`notification`       setting_notification,
+               spcs.`create_time`        setting_create_time,
+               spcs.`update_time`        setting_update_time,
+               spcs.`version`            setting_version,
+               sfc.`id`                  column_id,
+               sfc.`code`                column_code,
+               sfc.`description`         column_description,
+               sfc.`local_description`   column_local_description,
+               sfc.`create_time`         column_create_time,
+               sfc.`update_time`         column_update_time,
+               sfc.`version`             column_version
+        from smm_flight_column sfc,
+             smm_profile_column_setting spcs
+        where spcs.profile_id = #{id}
+          and spcs.column_id = sfc.id
+    </select>
+
+    <!--    <update id="updateById" parameterType="SmmRoleColumnSetting">-->
+    <!--        UPDATE smm_role_column_setting-->
+    <!--        SET `authorized`=#{authorized},-->
+    <!--            `visible`=#{visible},-->
+    <!--            `order`=#{order},-->
+    <!--            `highlight`=#{highlight},-->
+    <!--            `highlight_color`=#{highlightColor},-->
+    <!--            `highlight_duration`=#{highlightDuration},-->
+    <!--            `notification`=#{notification}-->
+    <!--        WHERE `id` = #{id}-->
+    <!--    </update>-->
+</mapper>

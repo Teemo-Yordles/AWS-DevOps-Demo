@@ -1,0 +1,28 @@
+server:
+  port: 8086
+spring:
+  application:
+    name: view-websocket
+  redis:
+    host: localhost
+    port: 7963
+    password: Best9Luck!
+    subscribe:
+      topic: FLOP
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  netty:
+    port: 18080
+logging:
+  level:
+    root: info
+    com.unisys.aos.view: debug
+  file:
+    max-history: 30
+    max-size: 10MB
+    name: ./logs/view-websocket.log
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level ${PID:- } --- [%thread] %-45.45logger{44} : %msg%n"
+    rolling-file-name: ./logs/view-websocket.%d{yyyy-MM-dd}-%i.gz

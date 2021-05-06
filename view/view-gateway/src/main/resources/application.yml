@@ -1,0 +1,80 @@
+server:
+  port: 8989
+spring:
+  application:
+    name: view-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848,129.223.237.96:8848,129.223.237.98:8848,129.223.237.87:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: flight_route
+          uri: lb://view-portal
+          predicates:
+            - Path=/view/flights/**
+        - id: seasonal_flight_route
+          uri: lb://view-portal
+          predicates:
+            - Path=/view/seasonal-flights/**
+        - id: forward_to_websocket
+          uri: lb://view-portal
+          predicates:
+            - Path=/view/websocket/**
+        - id: reference_data_route
+          uri: lb://view-portal
+          predicates:
+            - Path=/view/data/reference/**
+        - id: admin_route
+          uri: lb://view-admin
+          predicates:
+            - Path=/view/admin/force-offline/**,/view/admin/roles/**,/view/admin/groups/**,/view/admin/users/**,/view/admin/parameters/**,/view/admin/functions/**,/view/admin/audits/**,/view/admin/caches/**,/view/admin/permit-all/**
+        - id: access-related-route
+          uri: lb://view-admin
+          predicates:
+            - Path=/view/login,/view/logout,/view/refresh-token,/view/login-test,/view/logout-test
+        - id: request-message-route
+          uri: lb://view-aodb-interface
+          predicates:
+            - Path=/view/admin/data-request
+  redis:
+    host: localhost
+    port: 7963
+    password: Best9Luck!
+    subscribe:
+      topic:
+
+logging:
+  level:
+    root: info
+    com.unisys.aos.view: debug
+  file:
+    max-history: 30
+    max-size: 10MB
+    name: ./logs/view-gateway.log
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level ${PID:- } --- [%thread] %-45.45logger{44} : %msg%n"
+    rolling-file-name: view-gateway.%d{yyyy-MM-dd}-%i.gz
+jwt:
+  enabled: true
+  secret: Rum%>J]_@!DzALL0no3)^.0d
+  accessTokenExpiration: 3000000
+  refreshTokenExpiration: 86400000
+  header: Authorization
+  usernameHeader: UserId
+  useDefaultController: true
+  permitLoginUserURI:
+    - /view/refresh-token
+    - /view/logout
+    - /view/logout-test
+    - /view/admin/permit-all/functions
+    - /view/admin/permit-all/user-setting
+  permitAllURI:
+    - /view/websocket/FLOP
+    - /view/login-test
+  test-token: WishAllTheBest!
+

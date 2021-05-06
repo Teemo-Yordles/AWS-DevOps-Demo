@@ -1,0 +1,65 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: view-message-processor
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/view?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: Best9Luck!
+    druid:
+      initial-size: 5
+      max-active: 10
+      min-idle: 5
+      max-wait: 60000
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: viewuser
+    password: viewpassword
+    virtual-host: /view
+    listener:
+      simple:
+        acknowledge-mode: manual
+        #并发消费者初始化值
+        concurrency: 1
+        #并发消费者的最大值
+        max-concurrency: 1
+        #每个消费者每次监听时可拉取处理的消息数量
+        prefetch: 1
+  redis:
+    host: localhost
+    port: 7963
+    password: Best9Luck!
+    subscribe:
+      topic:
+
+messageprocessor:
+  wait-duration:
+    failed: 10000 # in milli-second
+    empty-queue: 2000 # if no more message in queue, how long to wait to check again
+  messaging:
+    consumer:
+      queue-name: view.in.message.queue # queue name of the in message queue
+
+logging:
+  level:
+    root: info
+    com.unisys.aos.view: debug
+  file:
+    max-history: 30
+    max-size: 10MB
+    name: ./logs/view-message-processor.log
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level ${PID:- } --- [%thread] %-45.45logger{44} : %msg%n"
+    rolling-file-name: view-message-processor.%d{yyyy-MM-dd}-%i.gz
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+flight:
+  home-airport: CTU

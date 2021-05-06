@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unisys.aos.view.admin.mapper.SmmParameterMapper">
+
+    <delete id="deleteByProfileId">
+        delete
+        from smm_parameter sm
+        where sm.`id` IN (select `parameter_id`
+                          from smm_profile_parameter spp
+                          where spp.`profile_id` = #{profile_id})
+    </delete>
+
+    <delete id="deleteByRoleId">
+        delete
+        from smm_parameter sm
+        where sm.`id` IN (select `parameter_id`
+                          from smm_role_parameter srp
+                          where srp.`role_id` = #{id})
+    </delete>
+</mapper>

@@ -1,0 +1,32 @@
+-- UPD
+INSERT INTO aodbinterface.cminmsgs (CMINMSGS_CLOB_MSG, CMINMSGS_DATE_RECEIVED, CMINMSGS_STATUS) VALUES ('<?xml version="1.0" encoding="UTF-8"?>
+<MSG xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation = "unisysaodbsis.xsd">
+	<META>
+		<SNDR>AODB</SNDR>
+		<SEQN>1243</SEQN>
+		<DTTM>20021010090311</DTTM>
+		<TYPE>FLOP</TYPE>
+		<STYP>PSDT</STYP>
+	</META>
+	<FLOP>
+		<FLID>121112312</FLID>
+		<FFID>CA-CA101-A-12DEC031345-D</FFID>
+		<PSDT PSNO="1">
+			<PSST>S211</PSST>
+			<STST>15DEC021330</STST>
+			<STET>15DEC021430</STET>
+		</PSDT>
+		<PSDT PSNO="2">
+			<PSST>R211</PSST>
+			<STST>15DEC021415</STST>
+			<STET>15DEC021515</STET>
+		</PSDT>
+		<PSDT PSNO="3">
+			<PSST>S209</PSST>
+			<STST>15DEC021515</STST>
+			<STET>15DEC021645</STET>
+		</PSDT>
+	</FLOP>
+</MSG>
+', sysdate(), 'VALID');
+

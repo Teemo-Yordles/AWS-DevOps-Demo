@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unisys.aos.view.admin.mapper.SmmProfileMapper">
+    <insert id="initColumnSettingsFromProfile">
+        insert into smm_profile_column_setting (`profile_id`,
+                                                `column_id`,
+                                                `authorized`,
+                                                `visible`,
+                                                `order`,
+                                                `highlight`,
+                                                `highlight_color`,
+                                                `highlight_duration`,
+                                                `notification`,
+                                                `create_time`,
+                                                `update_time`,
+                                                `version`)
+        select #{newProfileId},
+               `column_id`,
+               `authorized`,
+               `visible`,
+               `order`,
+               `highlight`,
+               `highlight_color`,
+               `highlight_duration`,
+               `notification`,
+               CURRENT_TIMESTAMP,
+               CURRENT_TIMESTAMP,
+               1
+        from smm_profile_column_setting
+        where `profile_id` = #{currentProfileId}
+    </insert>
+
+    <insert id="initParametersFromProfile">
+        insert into smm_profile_parameter (`profile_id`,
+                                           `parameter_id`)
+        select #{newProfileId},
+               `parameter_id`
+        from smm_profile_parameter
+        where `profile_id` = #{currentProfileId}
+    </insert>
+
+    <insert id="addProfile">
+       insert into smm_profile (`name`,
+                                `description`,
+                                `role_id`,
+                                `create_time`,
+                                `version`)
+                        values (#{profile.name},
+                                #{profile.description},
+                                #{profile.roleId},
+                                CURRENT_TIMESTAMP,
+                                1)
+    </insert>
+
+    <select id="findRoleRelatedProfilesByUsername" resultType="com.unisys.aos.view.admin.entity.SmmProfile">
+        select sp.*
+        from smm_profile sp
+                 inner join smm_user su
+                            on su.role_id = sp.role_id
+        where su.username = #{username}
+    </select>
+    <select id="isRoleProfile" resultType="java.lang.Integer">
+        select count(id)
+        from smm_role
+        where profile_id = #{profileId}
+    </select>
+    <select id="getProfileIdForRole" resultType="java.lang.Long">
+        select `profile_id`
+        from smm_role
+        where `id` = #{roleId}
+    </select>
+</mapper>

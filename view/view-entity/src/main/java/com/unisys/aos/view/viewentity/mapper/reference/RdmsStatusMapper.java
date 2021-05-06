@@ -1,0 +1,229 @@
+package com.unisys.aos.view.viewentity.mapper.reference;
+
+import com.unisys.aos.view.viewentity.entity.reference.RdmsStatus;
+import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.type.JdbcType;
+import org.mybatis.dynamic.sql.SqlBuilder;
+import org.mybatis.dynamic.sql.delete.DeleteDSL;
+import org.mybatis.dynamic.sql.delete.MyBatis3DeleteModelAdapter;
+import org.mybatis.dynamic.sql.delete.render.DeleteStatementProvider;
+import org.mybatis.dynamic.sql.insert.render.InsertStatementProvider;
+import org.mybatis.dynamic.sql.render.RenderingStrategy;
+import org.mybatis.dynamic.sql.select.MyBatis3SelectModelAdapter;
+import org.mybatis.dynamic.sql.select.QueryExpressionDSL;
+import org.mybatis.dynamic.sql.select.SelectDSL;
+import org.mybatis.dynamic.sql.select.render.SelectStatementProvider;
+import org.mybatis.dynamic.sql.update.MyBatis3UpdateModelAdapter;
+import org.mybatis.dynamic.sql.update.UpdateDSL;
+import org.mybatis.dynamic.sql.update.render.UpdateStatementProvider;
+import org.mybatis.dynamic.sql.util.SqlProviderAdapter;
+import org.springframework.stereotype.Repository;
+
+import javax.annotation.Generated;
+import java.util.List;
+
+import static com.unisys.aos.view.viewentity.mapper.reference.RdmsStatusDynamicSqlSupport.*;
+import static org.mybatis.dynamic.sql.SqlBuilder.*;
+
+@Mapper
+@Repository
+public interface RdmsStatusMapper {
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    @SelectProvider(type = SqlProviderAdapter.class, method = "select")
+    long count(SelectStatementProvider selectStatement);
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    @DeleteProvider(type = SqlProviderAdapter.class, method = "delete")
+    int delete(DeleteStatementProvider deleteStatement);
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    @InsertProvider(type = SqlProviderAdapter.class, method = "insert")
+    @SelectKey(statement = "SELECT LAST_INSERT_ID()", keyProperty = "record.id", before = false, resultType = Long.class)
+    int insert(InsertStatementProvider<RdmsStatus> insertStatement);
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    @SelectProvider(type = SqlProviderAdapter.class, method = "select")
+    @ResultMap("RdmsStatusResult")
+    RdmsStatus selectOne(SelectStatementProvider selectStatement);
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    @SelectProvider(type = SqlProviderAdapter.class, method = "select")
+    @Results(id = "RdmsStatusResult", value = {
+            @Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
+            @Result(column = "status_code", property = "statusCode", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "description", property = "description", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "local_description", property = "localDescription", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "abnormal", property = "abnormal", jdbcType = JdbcType.BIT),
+            @Result(column = "inspire_time", property = "inspireTime", jdbcType = JdbcType.BIGINT),
+            @Result(column = "expire_time", property = "expireTime", jdbcType = JdbcType.BIGINT),
+            @Result(column = "create_time", property = "createTime", jdbcType = JdbcType.TIMESTAMP),
+            @Result(column = "update_time", property = "updateTime", jdbcType = JdbcType.TIMESTAMP)
+    })
+    List<RdmsStatus> selectMany(SelectStatementProvider selectStatement);
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    @UpdateProvider(type = SqlProviderAdapter.class, method = "update")
+    int update(UpdateStatementProvider updateStatement);
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    default QueryExpressionDSL<MyBatis3SelectModelAdapter<Long>> countByExample() {
+        return SelectDSL.selectWithMapper(this::count, SqlBuilder.count())
+                .from(rdmsStatus);
+    }
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    default DeleteDSL<MyBatis3DeleteModelAdapter<Integer>> deleteByExample() {
+        return DeleteDSL.deleteFromWithMapper(this::delete, rdmsStatus);
+    }
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    default int deleteByPrimaryKey(Long id_) {
+        return DeleteDSL.deleteFromWithMapper(this::delete, rdmsStatus)
+                .where(id, isEqualTo(id_))
+                .build()
+                .execute();
+    }
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    default int insert(RdmsStatus record) {
+        return insert(SqlBuilder.insert(record)
+                .into(rdmsStatus)
+                .map(statusCode).toProperty("statusCode")
+                .map(description).toProperty("description")
+                .map(localDescription).toProperty("localDescription")
+                .map(abnormal).toProperty("abnormal")
+                .map(inspireTime).toProperty("inspireTime")
+                .map(expireTime).toProperty("expireTime")
+                .map(createTime).toProperty("createTime")
+                .map(updateTime).toProperty("updateTime")
+                .build()
+                .render(RenderingStrategy.MYBATIS3));
+    }
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    default int insertSelective(RdmsStatus record) {
+        return insert(SqlBuilder.insert(record)
+                .into(rdmsStatus)
+                .map(statusCode).toPropertyWhenPresent("statusCode", record::getStatusCode)
+                .map(description).toPropertyWhenPresent("description", record::getDescription)
+                .map(localDescription).toPropertyWhenPresent("localDescription", record::getLocalDescription)
+                .map(abnormal).toPropertyWhenPresent("abnormal", record::getAbnormal)
+                .map(inspireTime).toPropertyWhenPresent("inspireTime", record::getInspireTime)
+                .map(expireTime).toPropertyWhenPresent("expireTime", record::getExpireTime)
+                .map(createTime).toPropertyWhenPresent("createTime", record::getCreateTime)
+                .map(updateTime).toPropertyWhenPresent("updateTime", record::getUpdateTime)
+                .build()
+                .render(RenderingStrategy.MYBATIS3));
+    }
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<RdmsStatus>>> selectByExample() {
+        return SelectDSL.selectWithMapper(this::selectMany, id, statusCode, description, localDescription, abnormal, inspireTime, expireTime, createTime, updateTime)
+                .from(rdmsStatus);
+    }
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<RdmsStatus>>> selectDistinctByExample() {
+        return SelectDSL.selectDistinctWithMapper(this::selectMany, id, statusCode, description, localDescription, abnormal, inspireTime, expireTime, createTime, updateTime)
+                .from(rdmsStatus);
+    }
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    default RdmsStatus selectByPrimaryKey(Long id_) {
+        return SelectDSL.selectWithMapper(this::selectOne, id, statusCode, description, localDescription, abnormal, inspireTime, expireTime, createTime, updateTime)
+                .from(rdmsStatus)
+                .where(id, isEqualTo(id_))
+                .build()
+                .execute();
+    }
+
+    /***
+     * Get RdmsStatus entity by flight status code.
+     * @param code flight status code
+     * @param inspire inspire time
+     * @param expire expire time
+     * @return RdmsStatus entity
+     */
+    default RdmsStatus selectByStatusCode(String code, Long inspire, Long expire) {
+        //noinspection deprecation
+        return SelectDSL.selectWithMapper(this::selectOne, id, statusCode, description, localDescription, abnormal, inspireTime, expireTime, createTime, updateTime)
+                .from(rdmsStatus)
+                .where(statusCode, isEqualTo(code))
+                .and(inspireTime, isLessThanOrEqualTo(inspire))
+                .and(expireTime, isGreaterThanOrEqualTo(expire))
+                .build()
+                .execute();
+    }
+
+    /***
+     * Get RdmsStatus entity by flight status code.
+     * @param code flight status code
+     * @return RdmsStatus entity
+     */
+    default List<RdmsStatus> selectByStatusCode(String code) {
+        //noinspection deprecation
+        return SelectDSL.selectWithMapper(this::selectMany, id, statusCode, description, localDescription, abnormal, inspireTime, expireTime, createTime, updateTime)
+                .from(rdmsStatus)
+                .where(statusCode, isEqualTo(code))
+                .build()
+                .execute();
+    }
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    default UpdateDSL<MyBatis3UpdateModelAdapter<Integer>> updateByExample(RdmsStatus record) {
+        return UpdateDSL.updateWithMapper(this::update, rdmsStatus)
+                .set(statusCode).equalTo(record::getStatusCode)
+                .set(description).equalTo(record::getDescription)
+                .set(localDescription).equalTo(record::getLocalDescription)
+                .set(abnormal).equalTo(record::getAbnormal)
+                .set(inspireTime).equalTo(record::getInspireTime)
+                .set(expireTime).equalTo(record::getExpireTime)
+                .set(createTime).equalTo(record::getCreateTime)
+                .set(updateTime).equalTo(record::getUpdateTime);
+    }
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    default UpdateDSL<MyBatis3UpdateModelAdapter<Integer>> updateByExampleSelective(RdmsStatus record) {
+        return UpdateDSL.updateWithMapper(this::update, rdmsStatus)
+                .set(statusCode).equalToWhenPresent(record::getStatusCode)
+                .set(description).equalToWhenPresent(record::getDescription)
+                .set(localDescription).equalToWhenPresent(record::getLocalDescription)
+                .set(abnormal).equalToWhenPresent(record::getAbnormal)
+                .set(inspireTime).equalToWhenPresent(record::getInspireTime)
+                .set(expireTime).equalToWhenPresent(record::getExpireTime)
+                .set(createTime).equalToWhenPresent(record::getCreateTime)
+                .set(updateTime).equalToWhenPresent(record::getUpdateTime);
+    }
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    default int updateByPrimaryKey(RdmsStatus record) {
+        return UpdateDSL.updateWithMapper(this::update, rdmsStatus)
+                .set(statusCode).equalTo(record::getStatusCode)
+                .set(description).equalTo(record::getDescription)
+                .set(localDescription).equalTo(record::getLocalDescription)
+                .set(abnormal).equalTo(record::getAbnormal)
+                .set(inspireTime).equalTo(record::getInspireTime)
+                .set(expireTime).equalTo(record::getExpireTime)
+                .set(createTime).equalTo(record::getCreateTime)
+                .set(updateTime).equalTo(record::getUpdateTime)
+                .where(id, isEqualTo(record::getId))
+                .build()
+                .execute();
+    }
+
+    @Generated("org.mybatis.generator.api.MyBatisGenerator")
+    default int updateByPrimaryKeySelective(RdmsStatus record) {
+        return UpdateDSL.updateWithMapper(this::update, rdmsStatus)
+                .set(statusCode).equalToWhenPresent(record::getStatusCode)
+                .set(description).equalToWhenPresent(record::getDescription)
+                .set(localDescription).equalToWhenPresent(record::getLocalDescription)
+                .set(abnormal).equalToWhenPresent(record::getAbnormal)
+                .set(inspireTime).equalToWhenPresent(record::getInspireTime)
+                .set(expireTime).equalToWhenPresent(record::getExpireTime)
+                .set(createTime).equalToWhenPresent(record::getCreateTime)
+                .set(updateTime).equalToWhenPresent(record::getUpdateTime)
+                .where(id, isEqualTo(record::getId))
+                .build()
+                .execute();
+    }
+}

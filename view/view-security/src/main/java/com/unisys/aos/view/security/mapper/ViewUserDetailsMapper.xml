@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unisys.aos.view.security.mapper.ViewUserDetailsMapper">
+    <select id="findFunctionUrlByRoleName" resultType="string" parameterType="string">
+        SELECT url
+        FROM smm_function f
+        LEFT JOIN smm_role_function rf ON f.id = rf.function_id
+        LEFT JOIN smm_role r ON r.id = rf.role_id
+        WHERE r.name = #{roleName}
+    </select>
+
+    <select id="findUserDetailsFunctionsByRoleName" resultType="ViewUserDetailsFunction" parameterType="string">
+        SELECT *
+        FROM smm_function f
+        LEFT JOIN smm_role_function rf ON f.id = rf.function_id
+        LEFT JOIN smm_role r ON r.id = rf.role_id
+        WHERE r.name = #{roleName}
+    </select>
+</mapper>

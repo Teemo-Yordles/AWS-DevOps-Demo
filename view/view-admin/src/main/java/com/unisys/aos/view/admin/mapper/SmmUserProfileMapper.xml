@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unisys.aos.view.admin.mapper.SmmUserProfileMapper">
+    <select id="findProfileIdListByUserId" resultType="long" parameterType="long">
+        select sup.profile_id
+        from smm_user_profile sup
+        where sup.user_id = #{userId}
+        order by sup.id
+    </select>
+    <select id="findUserIdListByProfileId" resultType="long" parameterType="long">
+        select sup.user_id
+        from smm_user_profile sup
+        where sup.profile_id = #{profileId}
+        order by sup.id
+    </select>
+    <insert id="addUserProfile" parameterType="long">
+        insert into smm_user_profile (`user_id`, `profile_id`)
+        values (#{userId}, #{profileId})
+    </insert>
+    <delete id="deleteByUserId" parameterType="long">
+        delete from smm_user_profile sup
+        where sup.user_id = #{userId}
+    </delete>
+    <delete id="deleteByProfileId" parameterType="long">
+        delete from smm_user_profile sup
+        where sup.profile_id = #{profileId}
+    </delete>
+</mapper>

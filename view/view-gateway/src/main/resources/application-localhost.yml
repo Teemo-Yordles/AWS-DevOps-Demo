@@ -1,0 +1,12 @@
+server-ip: localhost
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${server-ip}:8848
+  redis:
+    host: ${server-ip}
+    port: 7963
+    password: Best9Luck!
+    subscribe:
+      topic:

@@ -1,0 +1,193 @@
+-- DNLD
+INSERT INTO aodbinterface.cminmsgs (CMINMSGS_CLOB_MSG, CMINMSGS_DATE_RECEIVED, CMINMSGS_STATUS) VALUES ('<?xml version="1.0" encoding="UTF-8"?>
+<MSG xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation = "unisysaodbsis.xsd">
+	<META>
+		<SNDR>AODB</SNDR>
+		<SEQN>124311</SEQN>
+		<DTTM>20021010090311</DTTM>
+		<TYPE>SCHS</TYPE>
+		<STYP>DNLD</STYP>
+	</META>
+	<SCHS>
+		<SNAM>Winter</SNAM>
+		<APCD>CTU</APCD>
+		<SDAT>10SEP20</SDAT>
+		<EDAT>10JUN21</EDAT>
+		<RECS>2</RECS>
+		<FLTR>
+			<ALCD>LH</ALCD>
+			<FLNO>LH724</FLNO>
+			<MVIN>D</MVIN>
+			<STDT>14NOV21</STDT>
+			<EDDT>14MAR21</EDDT>
+			<DYOP>1200560</DYOP>
+			<SCHT>1023</SCHT>
+			<FLTY>P</FLTY>
+			<FLIN>I</FLIN>
+			<ROUT RTNO="1">
+				<APCD>HKG</APCD>
+				<SCAT>1125</SCAT>
+				<SCDT>1330</SCDT>
+			</ROUT>
+			<ROUT RTNO="2">
+				<APCD>LON</APCD>
+				<SCAT>1125</SCAT>
+				<SCDT></SCDT>
+			</ROUT>
+			<ACFT>747</ACFT>
+			<RENO>A56729</RENO>
+			<TAOP>LH</TAOP>
+			<TAFL>LH647</TAFL>
+			<TRML>3</TRML>
+			<MAXP>320</MAXP>
+			<CSOP>HK</CSOP>
+			<CSFT>HK001</CSFT>
+			<ERUT RTNO="1">
+				<APCD>CTU</APCD>
+				<SCAT>14MAR211023</SCAT>
+				<SADC>+1</SADC>
+				<SCDT>14MAR211023</SCDT>
+				<SDDC>-2</SDDC>
+			</ERUT>
+			<ERUT RTNO="2">
+				<APCD>HKG</APCD>
+				<SCAT>14MAR211023</SCAT>
+				<SADC>+1</SADC>
+				<SCDT>14MAR211023</SCDT>
+				<SDDC>-2</SDDC>
+			</ERUT>
+			<ERUT RTNO="3">
+				<APCD>LON</APCD>
+				<SCAT>14MAR211023</SCAT>
+				<SADC>+1</SADC>
+				<SCDT>14MAR211023</SCDT>
+				<SDDC>-2</SDDC>
+			</ERUT>
+		</FLTR>
+		<FLTR>
+			<ALCD>CA</ALCD>
+			<FLNO>CA002</FLNO>
+			<MVIN>A</MVIN>
+			<STDT>11OCT19</STDT>
+			<EDDT>10MAY21</EDDT>
+			<DYOP>1234567</DYOP>
+			<SCHT>1023</SCHT>
+			<FLTY>P</FLTY>
+			<FLIN>D</FLIN>
+			<ROUT RTNO="1">
+				<APCD>CAN</APCD>
+				<SCDT>0730</SCDT>
+			</ROUT>
+			<ACFT>767</ACFT>
+			<RENO>A23729</RENO>
+			<MAXP>180</MAXP>
+			<CSOP>CZ</CSOP>
+			<CSFT>CZ101</CSFT>
+			<ERUT RTNO="1">
+				<APCD>CAN</APCD>
+				<SCDT>23NOV200325</SCDT>
+			</ERUT>
+			<ERUT RTNO="2">
+				<APCD>CTU</APCD>
+				<SCAT>23NOV200325</SCAT>
+			</ERUT>
+		</FLTR>
+	</SCHS>
+</MSG>', sysdate(), 'VALID');
+
+-- RESP
+INSERT INTO aodbinterface.cminmsgs (CMINMSGS_CLOB_MSG, CMINMSGS_DATE_RECEIVED, CMINMSGS_STATUS) VALUES ('<?xml version="1.0" encoding="UTF-8"?>
+<MSG xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation = "unisysaodbsis.xsd">
+	<META>
+		<SNDR>AODB</SNDR>
+		<SEQN>124311</SEQN>
+		<DTTM>20021010090311</DTTM>
+		<TYPE>SCHS</TYPE>
+		<STYP>RESP</STYP>
+	</META>
+	<SCHS>
+		<SNAM>Winter</SNAM>
+		<APCD>CTU</APCD>
+		<SDAT>10SEP20</SDAT>
+		<EDAT>10JUN21</EDAT>
+		<RECS>2</RECS>
+		<FLTR>
+			<ALCD>LH</ALCD>
+			<FLNO>LH724</FLNO>
+			<MVIN>D</MVIN>
+			<STDT>14NOV20</STDT>
+			<EDDT>14MAR21</EDDT>
+			<DYOP>1200560</DYOP>
+			<SCHT>1023</SCHT>
+			<FLTY>P</FLTY>
+			<FLIN>I</FLIN>
+			<ROUT RTNO="1">
+				<APCD>HKG</APCD>
+				<SCAT>1125</SCAT>
+				<SCDT>1330</SCDT>
+			</ROUT>
+			<ROUT RTNO="2">
+				<APCD>LON</APCD>
+				<SCAT>1125</SCAT>
+				<SCDT></SCDT>
+			</ROUT>
+			<ACFT>747</ACFT>
+			<RENO>A56729</RENO>
+			<TAOP>LH</TAOP>
+			<TAFL>LH647</TAFL>
+			<TRML>3</TRML>
+			<MAXP>320</MAXP>
+			<CSOP>HK</CSOP>
+			<CSFT>HK001</CSFT>
+			<ERUT RTNO="1">
+				<APCD>CTU</APCD>
+				<SCAT>14MAR211023</SCAT>
+				<SADC>+1</SADC>
+				<SCDT>14MAR211023</SCDT>
+				<SDDC>-2</SDDC>
+			</ERUT>
+			<ERUT RTNO="2">
+				<APCD>HKG</APCD>
+				<SCAT>14MAR211023</SCAT>
+				<SADC>+1</SADC>
+				<SCDT>14MAR211023</SCDT>
+				<SDDC>-2</SDDC>
+			</ERUT>
+			<ERUT RTNO="3">
+				<APCD>LON</APCD>
+				<SCAT>14MAR211023</SCAT>
+				<SADC>+1</SADC>
+				<SCDT>14MAR211023</SCDT>
+				<SDDC>-2</SDDC>
+			</ERUT>
+		</FLTR>
+		<FLTR>
+			<ALCD>CA</ALCD>
+			<FLNO>CA002</FLNO>
+			<MVIN>A</MVIN>
+			<STDT>11OCT20</STDT>
+			<EDDT>10MAY21</EDDT>
+			<DYOP>1234567</DYOP>
+			<SCHT>1023</SCHT>
+			<FLTY>P</FLTY>
+			<FLIN>D</FLIN>
+			<ROUT RTNO="1">
+				<APCD>CAN</APCD>
+				<SCDT>0730</SCDT>
+			</ROUT>
+			<ACFT>767</ACFT>
+			<RENO>A23729</RENO>
+			<MAXP>180</MAXP>
+			<CSOP>CZ</CSOP>
+			<CSFT>CZ101</CSFT>
+			<ERUT RTNO="1">
+				<APCD>CAN</APCD>
+				<SCDT>23NOV200325</SCDT>
+			</ERUT>
+			<ERUT RTNO="2">
+				<APCD>CTU</APCD>
+				<SCAT>23NOV200325</SCAT>
+			</ERUT>
+		</FLTR>
+	</SCHS>
+</MSG>', sysdate(), 'VALID');

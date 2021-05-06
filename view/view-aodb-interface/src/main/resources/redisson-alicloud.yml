@@ -1,0 +1,20 @@
+singleServerConfig:
+  idleConnectionTimeout: 10000
+  connectTimeout: 10000
+  timeout: 3000
+  retryAttempts: 3
+  retryInterval: 1500
+  failedSlaveReconnectionInterval: 3000
+  failedSlaveCheckInterval: 60000
+  password: Best9Luck!
+  subscriptionsPerConnection: 5
+  clientName: view
+  subscriptionConnectionMinimumIdleSize: 1
+  subscriptionConnectionPoolSize: 50
+  address: redis://172.28.249.179:7963
+  scanInterval: 1000
+  pingConnectionInterval: 0
+threads: 16
+nettyThreads: 32
+codec: !<org.redisson.codec.FstCodec> {}
+transportMode: "NIO"

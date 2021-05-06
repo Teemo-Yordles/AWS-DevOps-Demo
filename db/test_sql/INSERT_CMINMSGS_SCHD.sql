@@ -1,0 +1,207 @@
+-- DNLD
+INSERT INTO aodbinterface.cminmsgs (CMINMSGS_CLOB_MSG, CMINMSGS_DATE_RECEIVED, CMINMSGS_STATUS) VALUES ('<?xml version="1.0" encoding="UTF-8"?>
+<MSG xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="unisysaodbsis.xsd">
+    <META>
+        <SNDR>AODB</SNDR>
+<SEQN>345935</SEQN>
+<DTTM>20181105223126</DTTM>
+<TYPE>SCHD</TYPE>
+<STYP>DNLD</STYP>
+</META>
+<SCHD>
+<RECS>2</RECS>
+<FLTR>
+<FLID>15</FLID>
+<ALCD>YG</ALCD>
+<FLNO>YG9028</FLNO>
+<MVIN>D</MVIN>
+<SODT>23JAN210535</SODT>
+<FLTY>W</FLTY>
+<FLIN>D</FLIN>
+<ROUT RTNO = "1">
+<APCD>XIY</APCD>
+<SCAT>23JAN210710</SCAT>
+</ROUT>
+<ACFT>733</ACFT>
+<RENO>B2574</RENO>
+<TAOP>YG</TAOP>
+<TAFL>YG9061</TAFL>
+<TAID>16</TAID>
+<TRML>T2</TRML>
+<MAXP>300</MAXP>
+<STND>504</STND>
+<PSDT PSNO="1">
+<PSST>504</PSST>
+<STST>23JAN210237</STST>
+<STET>23JAN210549</STET>
+</PSDT>
+<PHAG>110009</PHAG>
+<FHAG>110009</FHAG>
+<MHAG>110009</MHAG>
+<ERUT RTNO = "1">
+<APCD>CTU</APCD>
+<SCDT>23JAN210535</SCDT>
+</ERUT>
+<ERUT RTNO = "2">
+<APCD>XIY</APCD>
+<SCAT>23JAN210710</SCAT>
+</ERUT>
+<EXSC>RCFLOP</EXSC>
+<FTSS>RCFLOP</FTSS>
+</FLTR>
+<FLTR>
+<FLID>16</FLID>
+<ALCD>YG</ALCD>
+<FLNO>YG9061</FLNO>
+<MVIN>A</MVIN>
+<SODT>23JAN210325</SODT>
+<FLTY>W</FLTY>
+<FLIN>D</FLIN>
+<ROUT RTNO = "1">
+<APCD>HGH</APCD>
+<SCDT>23JAN210010</SCDT>
+</ROUT>
+<ACFT>733</ACFT>
+<RENO>B2574</RENO>
+<TAOP>YG</TAOP>
+<TAFL>YG9028</TAFL>
+<TAID>15</TAID>
+<TRML>T2</TRML>
+<MAXP>300</MAXP>
+<STND>504</STND>
+<PSDT PSNO="1">
+<PSST>504</PSST>
+<STST>23JAN210237</STST>
+<STET>23JAN210549</STET>
+</PSDT>
+<PHAG>110009</PHAG>
+<FHAG>110009</FHAG>
+<MHAG>110009</MHAG>
+<ERUT RTNO = "1">
+<APCD>HGH</APCD>
+<SCDT>23JAN210010</SCDT>
+</ERUT>
+<ERUT RTNO = "2">
+<APCD>CTU</APCD>
+<SCAT>23JAN210325</SCAT>
+</ERUT>
+<EXSC>RCFLOP</EXSC>
+<FTSS>RCFLOP</FTSS>
+</FLTR>
+</SCHD>
+</MSG>', sysdate(), 'VALID');
+
+-- RESP
+INSERT INTO aodbinterface.cminmsgs (CMINMSGS_CLOB_MSG, CMINMSGS_DATE_RECEIVED, CMINMSGS_STATUS) VALUES ('<?xml version="1.0" encoding="UTF-8"?>
+<MSG xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation = "unisysaodbsis.xsd">
+	<META>
+		<SNDR>AODB</SNDR>
+		<SEQN>1243</SEQN>
+		<DTTM>20120229090411</DTTM>
+		<TYPE>ABDG</TYPE>
+		<STYP>RESP</STYP>
+	</META>
+	<RECS>2</RECS>
+	<ABDG>
+		<ABCD>212</ABCD>
+		<DESC>Airbridge 212</DESC>
+		<CDSC>登机桥 212</CDSC>
+		<AHGT></AHGT>
+		<ATML>T2</ATML>
+		<ATHE>N</ATHE>
+		<STND>212</STND>
+		<GATE>21</GATE>
+		<AMNO>1</AMNO>
+	</ABDG>
+	<ABDG>
+		<ABCD>112</ABCD>
+		<DESC>Airbridge 112</DESC>
+		<CDSC>登机桥 112</CDSC>
+		<AHGT></AHGT>
+		<ATML>T1</ATML>
+		<ATHE>Y</ATHE>
+		<STND>112</STND>
+		<STND>111</STND>
+		<GATE>11A</GATE>
+		<GATE>11B</GATE>
+		<AMNO>2</AMNO>
+	</ABDG>
+	</MSG>', sysdate(), 'VALID');
+
+-- ADD
+INSERT INTO aodbinterface.cminmsgs (CMINMSGS_CLOB_MSG, CMINMSGS_DATE_RECEIVED, CMINMSGS_STATUS) VALUES ('<?xml version="1.0" encoding="UTF-8"?>
+<MSG xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation = "unisysaodbsis.xsd">
+	<META>
+		<SNDR>AODB</SNDR>
+		<SEQN>1243</SEQN>
+		<DTTM>20120229090511</DTTM>
+		<TYPE>ABDG</TYPE>
+		<STYP>UPD</STYP>
+	</META>
+	<RECS>1</RECS>
+	<ABDG>
+		<ABCD>213</ABCD>
+		<DESC>Airbridge 213</DESC>
+		<CDSC>登机桥 213</CDSC>
+		<AHGT>21</AHGT>
+		<ATML>T2</ATML>
+		<ATHE>N</ATHE>
+		<STND>213</STND>
+        <STND></STND>
+        <STND>613</STND>
+		<GATE>23</GATE>
+        <GATE></GATE>
+        <GATE>223</GATE>
+		<AMNO></AMNO>
+	</ABDG>
+	</MSG>', sysdate(), 'VALID');
+
+-- UPD
+INSERT INTO aodbinterface.cminmsgs (CMINMSGS_CLOB_MSG, CMINMSGS_DATE_RECEIVED, CMINMSGS_STATUS) VALUES ('<?xml version="1.0" encoding="UTF-8"?>
+<MSG xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation = "unisysaodbsis.xsd">
+	<META>
+		<SNDR>AODB</SNDR>
+		<SEQN>1243</SEQN>
+		<DTTM>20120229090611</DTTM>
+		<TYPE>ABDG</TYPE>
+		<STYP>UPD</STYP>
+	</META>
+	<RECS>1</RECS>
+	<ABDG>
+		<ABCD>214</ABCD>
+		<DESC>T2 Airbridge 213</DESC>
+		<CDSC>登机桥 213</CDSC>
+		<AHGT>23</AHGT>
+		<ATML>T2</ATML>
+		<ATHE>N</ATHE>
+		<STND>213</STND>
+        <STND>256</STND>
+		<GATE>123</GATE>
+        <GATE>233</GATE>
+		<AMNO>1</AMNO>
+	</ABDG>
+	</MSG>', sysdate(), 'VALID');
+
+-- DEL
+INSERT INTO aodbinterface.cminmsgs (CMINMSGS_CLOB_MSG, CMINMSGS_DATE_RECEIVED, CMINMSGS_STATUS) VALUES ('<?xml version="1.0" encoding="UTF-8"?>
+<MSG xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation = "unisysaodbsis.xsd">
+	<META>
+		<SNDR>AODB</SNDR>
+		<SEQN>1243</SEQN>
+		<DTTM>20120229090711</DTTM>
+		<TYPE>ABDG</TYPE>
+		<STYP>DEL</STYP>
+	</META>
+	<RECS>1</RECS>
+	<ABDG>
+		<ABCD>213</ABCD>
+		<DESC>T2 Airbridge 213</DESC>
+		<CDSC>登机桥 213</CDSC>
+		<AHGT></AHGT>
+		<ATML>T2</ATML>
+		<ATHE>N</ATHE>
+		<STND>213</STND>
+		<GATE>23</GATE>
+		<AMNO></AMNO>
+	</ABDG>
+	</MSG>', sysdate(), 'VALID');

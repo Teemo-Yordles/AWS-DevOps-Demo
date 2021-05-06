@@ -1,0 +1,67 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: view-aodb-interface
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/aodbinterface?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: Best9Luck!
+    druid:
+      initial-size: 5
+      max-active: 10
+      min-idle: 5
+      max-wait: 60000
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: viewuser
+    password: viewpassword
+    virtual-host: /view
+  redis:
+    host: localhost
+    port: 7963
+    password: Best9Luck!
+    subscribe:
+      topic:
+
+messaging:
+  receiver-interval: 5000 #when no new message found in CMINMSGS, how long it should wait for next check (in millisecond)
+  receiver-amount: 20     #number of messages select from CMINMSGS in one go.
+  receiver-queue-name: view.in.message.queue # queue name of the in message queue
+  routing-id-daily-schedule-request: VIEWRQFD
+  routing-id-reference-data-request: VIEWRQRD
+
+logging:
+  level:
+    root: info
+    com.unisys.aos.view: debug
+  file:
+    max-history: 30
+    max-size: 10MB
+    name: ./logs/view-aodb-interface.log
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level ${PID:- } --- [%thread] %-45.45logger{44} : %msg%n"
+    rolling-file-name: view-aodb-interface.%d{yyyy-MM-dd}-%i.gz
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+jwt:
+  enabled: true
+  secret: Rum%>J]_@!DzALL0no3)^.0d
+  accessTokenExpiration: 3000000
+  refreshTokenExpiration: 86400000
+  header: Authorization
+  usernameHeader: UserId
+  useDefaultController: true
+  permitLoginUserURI:
+    - /view/refresh-token
+    - /view/logout
+    - /view/admin/permit-all/functions
+  permitAllURI:

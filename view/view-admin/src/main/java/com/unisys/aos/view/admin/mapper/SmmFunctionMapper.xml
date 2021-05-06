@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unisys.aos.view.admin.mapper.SmmFunctionMapper">
+    <select id="findFunctionsByRoleNames" resultType="SmmFunction" parameterType="list">
+        SELECT *
+        FROM smm_function f
+        LEFT JOIN smm_role_function rf ON f.id = rf.function_id
+        LEFT JOIN smm_role r ON r.id = rf.role_id
+        WHERE r.name IN
+        <foreach collection="roleNames" item="roleName" open='(' separator=',' close=')'>
+            #{roleName}
+        </foreach>
+    </select>
+</mapper>

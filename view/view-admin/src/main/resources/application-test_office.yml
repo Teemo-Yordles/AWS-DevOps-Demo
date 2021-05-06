@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://129.223.237.88:3306/view_admin?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: Best9Luck!
+    druid:
+      initial-size: 5
+      max-active: 10
+      min-idle: 5
+      max-wait: 60000
+  redis:
+    password: Best9Luck!
+    cluster:
+      nodes:
+        - 129.223.237.96:7001
+        - 129.223.237.96:7002
+        - 129.223.237.98:7001
+        - 129.223.237.98:7002
+        - 129.223.237.87:7001
+        - 129.223.237.87:7002
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 129.223.237.96:8848,129.223.237.98:8848,129.223.237.87:8848
+logging:
+  file:
+    name: /var/log/view/view-admin.log
+  pattern:
+    rolling-file-name: /var/log/view/view-admin.%d{yyyy-MM-dd}-%i.gz

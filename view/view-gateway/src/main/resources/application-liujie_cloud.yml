@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 49.233.12.156:8848
+logging:
+  file:
+    name: /var/log/view/view-gateway.log
+  pattern:
+    rolling-file-name: /var/log/view/view-gateway.%d{yyyy-MM-dd}-%i.gz

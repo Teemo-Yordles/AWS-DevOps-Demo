@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unisys.aos.view.admin.mapper.SmmRoleParameterMapper">
+    <select id="findParameterByRoleId" resultType="SmmParameter" parameterType="long">
+        SELECT sp.*
+        FROM smm_role_parameter srp
+                 JOIN smm_parameter sp on srp.parameter_id = sp.id
+        WHERE srp.role_id = #{id};
+    </select>
+</mapper>

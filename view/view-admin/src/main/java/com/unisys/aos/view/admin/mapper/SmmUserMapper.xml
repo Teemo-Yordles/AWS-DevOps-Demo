@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unisys.aos.view.admin.mapper.SmmUserMapper">
+    <select id="findUsernamesByRoleId" resultType="string" parameterType="long">
+        select su.username
+        from smm_user su
+        where su.role_id = #{roleId}
+    </select>
+    <select id="findUserListByRoleId" resultType="com.unisys.aos.view.admin.entity.SmmUser" parameterType="long">
+        select *
+        from smm_user
+        where role_id = #{roleId}
+    </select>
+    <select id="isUserProfileOwner" resultType="java.lang.Integer">
+        select count(su.`id`)
+        from smm_user su
+                 join smm_user_profile sup
+                      on su.`id` = sup.`user_id`
+        where su.`username` = #{username}
+          and sup.`profile_id` = #{profileId}
+    </select>
+    <select id="findByUsername" resultType="com.unisys.aos.view.admin.entity.SmmUser">
+        select *
+        from smm_user
+        where username = #{username}
+    </select>
+</mapper>

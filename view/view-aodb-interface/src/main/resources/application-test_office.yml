@@ -1,0 +1,43 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://129.223.237.88:3306/aodbinterface?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: Best9Luck!
+    druid:
+      initial-size: 5
+      max-active: 10
+      min-idle: 5
+      max-wait: 60000
+  rabbitmq:
+    username: viewuser
+    password: viewpassword
+    virtual-host: /view
+    addresses: 129.223.237.96:5672, 129.223.237.98:5672, 129.223.237.87:5672
+  redis:
+    password: Best9Luck!
+    cluster:
+      nodes:
+        - 129.223.237.96:7001
+        - 129.223.237.96:7002
+        - 129.223.237.98:7001
+        - 129.223.237.98:7002
+        - 129.223.237.87:7001
+        - 129.223.237.87:7002
+  redisson:
+    file: classpath:redisson-test_office.yml
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 129.223.237.96:8848,129.223.237.98:8848,129.223.237.87:8848
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+logging:
+  file:
+    name: /var/log/view/view-aodb-interface.log
+  pattern:
+    rolling-file-name: /var/log/view/view-aodb-interface.%d{yyyy-MM-dd}-%i.gz

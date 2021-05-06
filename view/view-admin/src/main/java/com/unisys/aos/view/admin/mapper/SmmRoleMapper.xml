@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unisys.aos.view.admin.mapper.SmmRoleMapper">
+    <resultMap id="RoleMap" type="SmmRole">
+        <result column="role_id" property="id"/>
+        <result column="role_name" property="name"/>
+        <result column="role_description" property="description"/>
+        <result column="role_profile_id" property="profileId"/>
+        <result column="role_create_time" property="createTime"/>
+        <result column="role_update_time" property="updateTime"/>
+        <result column="role_version" property="version"/>
+        <collection property="functions" ofType="SmmFunction">
+            <result column="fun_id" property="id"/>
+            <result column="fun_description" property="description"/>
+            <result column="fun_local_description" property="localDescription"/>
+            <result column="fun_code" property="code"/>
+            <result column="fun_create_time" property="createTime"/>
+            <result column="fun_update_time" property="updateTime"/>
+            <result column="fun_leaf" property="leaf"/>
+            <result column="fun_parent_id" property="parentId"/>
+            <result column="fun_sort" property="sort"/>
+            <result column="fun_url" property="url"/>
+            <result column="fun_version" property="version"/>
+        </collection>
+    </resultMap>
+
+    <select id="findRoles" resultMap="RoleMap">
+        select sr.id                role_id,
+               sr.name              role_name,
+               sr.description       role_description,
+               sr.profile_id        role_profile_id,
+               sr.create_time       role_create_time,
+               sr.update_time       role_update_time,
+               sr.version           role_version,
+               sf.id                fun_id,
+               sf.description       fun_description,
+               sf.local_description fun_local_description,
+               sf.code              fun_code,
+               sf.create_time       fun_create_time,
+               sf.update_time       fun_update_time,
+               sf.leaf              fun_leaf,
+               sf.parent_id         fun_parent_id,
+               sf.sort              fun_sort,
+               sf.url               fun_url,
+               sf.version           fun_version
+        FROM smm_role sr
+                 left outer join smm_role_function srf
+                                 on sr.id = srf.role_id
+                 left join smm_function sf
+                           on srf.function_id = sf.id
+    </select>
+
+    <select id="findRoleById" parameterType="long" resultMap="RoleMap">
+        select sr.id                role_id,
+               sr.name              role_name,
+               sr.description       role_description,
+               sr.profile_id        role_profile_id,
+               sr.create_time       role_create_time,
+               sr.update_time       role_update_time,
+               sr.version           role_version,
+               sf.id                fun_id,
+               sf.description       fun_description,
+               sf.local_description fun_local_description,
+               sf.code              fun_code,
+               sf.create_time       fun_create_time,
+               sf.update_time       fun_update_time,
+               sf.leaf              fun_leaf,
+               sf.parent_id         fun_parent_id,
+               sf.sort              fun_sort,
+               sf.url               fun_url,
+               sf.version           fun_version
+        FROM smm_role sr
+                 left outer join smm_role_function srf
+                                 on sr.id = srf.role_id
+                 left join smm_function sf
+                           on srf.function_id = sf.id
+        WHERE sr.id = #{id}
+    </select>
+
+    <select id="findParametersByRoleId" resultType="SmmRoleParameter" parameterType="long">
+        SELECT srp.`id`,
+               sp.`id` parameter_id,
+               srp.`role_id` role_id,
+               sp.`key`,
+               sp.`description`,
+               sp.`local_description`,
+               sp.`level`,
+               srp.`value`,
+               srp.`create_time`,
+               srp.`update_time`,
+               srp.`version`
+        FROM smm_role_parameter srp
+                 JOIN smm_parameter sp on srp.parameter_id = sp.id
+        WHERE srp.role_id = #{id};
+    </select>
+
+<!--    <insert id="initRoleColumnSettings" parameterType="long">-->
+<!--        insert into smm_role_column_setting (`role_id`,-->
+<!--                                                        `column_id`,-->
+<!--                                                        `authorized`,-->
+<!--                                                        `visible`,-->
+<!--                                                        `order`,-->
+<!--                                                        `highlight`,-->
+<!--                                                        `highlight_color`,-->
+<!--                                                        `highlight_duration`,-->
+<!--                                                        `notification`,-->
+<!--                                                        `create_time`,-->
+<!--                                                        `update_time`,-->
+<!--                                                        `version`)-->
+<!--        select #{id},-->
+<!--               `column_id`,-->
+<!--               0,-->
+<!--               1,-->
+<!--               `order`,-->
+<!--               `highlight`,-->
+<!--               `highlight_color`,-->
+<!--               `highlight_duration`,-->
+<!--               `notification`,-->
+<!--               CURRENT_TIMESTAMP,-->
+<!--               CURRENT_TIMESTAMP,-->
+<!--               1-->
+<!--        from smm_role_column_setting-->
+<!--        where `role_id` = 1;-->
+<!--    </insert>-->
+
+    <insert id="initRoleParameters" parameterType="long">
+        INSERT INTO smm_role_parameter
+        (`role_id`,
+         `parameter_id`,
+         `value`,
+         `create_time`,
+         `update_time`,
+         `version`)
+        select #{id},
+               sp.`id`,
+               sp.`value`,
+               current_timestamp,
+               current_timestamp,
+               1
+        from smm_parameter sp
+        where `level` IN ('role', 'user');
+    </insert>
+</mapper>
